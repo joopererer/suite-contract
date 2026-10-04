@@ -1,4 +1,4 @@
-# 套件互联与独立运行设计（v0.2）
+# 套件互联与独立运行设计（v0.3）
 
 > 适用项目：File Organizer（FO，桌面端）、OnlineAlbumPlugin（OAP，浏览器插件）、Marginalia（MG，浏览器插件）
 > 本文是对 INTEGRATION_CONTRACT 的上层约束，协议细节以 suite-contract 中的 JSON Schema 为准。
@@ -249,6 +249,8 @@ suiteOutbox: {
 
 协议直接以 v2 发布：host 只接受 `protocols` 中包含 2 的握手，否则返回 `PROTOCOL_MISMATCH`。v1 语义（消息字段、URL 规范化、私密规则、传输约束）全部迁入 v2 Schema；v1 文档只保留在 `docs/legacy/` 备查，不建线上兼容层。`hello` 的信封可省略 `libraryId`，其余消息必填。信封 `protocol` 必须等于协商结果。
 
+`hello_ack.capabilities` 只声明当前版本已完整实现的能力（DECISIONS_002 B1）：12 项是全集枚举，不是每版必声明。Phase 24a 声明除 `inbox.capture_download`、`inbox.capture_reference` 外的 10 项；24b 补齐 12 项。
+
 ### 5.3 消息类型（DECISIONS_001 A3 修订）
 
 | 类型 | 方向 | 说明 |
@@ -352,3 +354,4 @@ suite-contract/                 # 新仓库（或 monorepo 包）
 ## 修订记录
 
 - v0.2（依据 `docs/decisions/DECISIONS_001.md`）：§3.4 改为确定性 downloadKey（A1）与按需等待（A2）；§5.2 删除 `browserProfileId`、能力表扩为 12 项、v2 only（A1/A3/A4）；§5.3 重列消息类型并改名 `query.library_lookup`（A3）；新增 §5.4 传输约束（A5）。
+- v0.3（依据 `docs/decisions/DECISIONS_002.md` B1）：§5.2 capabilities 只声明已实现能力，12 项为全集枚举；注明 24a/24b 分阶段清单。

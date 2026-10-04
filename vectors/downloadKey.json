@@ -1,1 +1,26 @@
-{"algorithm": "hex(sha256(id + LF + startTime + LF + normalizeUrl(finalUrl)))", "cases": [{"downloadId": "7", "finalUrl": "https://example.com/Report.pdf?utm_source=x&b=2&a=1", "startTime": "2026-10-01T10:00:00.000Z"}, {"downloadId": "42", "finalUrl": "http://arxiv.org/pdf/2401.00001v2", "startTime": "2026-10-02T12:34:56.789Z"}, {"downloadId": "99", "finalUrl": "https://www.douban.com/?gclid=zz", "startTime": "2026-10-03T00:00:00.000Z"}]}
+{
+  "algorithm": "hex(sha256(id + LF + startTime + LF + normalizeUrl(finalUrl)))",
+  "cases": [
+    {
+      "downloadId": "7",
+      "finalUrl": "https://example.com/Report.pdf?utm_source=x&b=2&a=1",
+      "startTime": "2026-10-01T10:00:00.000Z",
+      "downloadKey": "b907c3295e95ff58a0daa2b32cfa398bc43cda65f29b47444c52b001249075d7",
+      "normalizedUrl": "https://example.com/Report.pdf?a=1&b=2"
+    },
+    {
+      "downloadId": "42",
+      "finalUrl": "http://arxiv.org/pdf/2401.00001v2",
+      "startTime": "2026-10-02T12:34:56.789Z",
+      "downloadKey": "6ff2cb949e0b409011f6a293758f0b6e0185ff09b3b4d1816a85d4449b31edcc",
+      "normalizedUrl": "http://arxiv.org/pdf/2401.00001v2"
+    },
+    {
+      "downloadId": "99",
+      "finalUrl": "https://www.douban.com/?gclid=zz",
+      "startTime": "2026-10-03T00:00:00.000Z",
+      "downloadKey": "2a61b5920ba647bb6c7ba9704cec21f9ddd74c31918cb08291ef542c7c748720",
+      "normalizedUrl": "https://www.douban.com/"
+    }
+  ]
+}
