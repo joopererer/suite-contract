@@ -1,0 +1,1 @@
+{"$id": "https://suite-contract.local/schema/forget_session.json", "$schema": "https://json-schema.org/draft/2020-12/schema", "additionalProperties": false, "properties": {"sessionId": {"type": "string"}, "type": {"const": "forget_session"}}, "required": ["type", "sessionId"], "type": "object"}

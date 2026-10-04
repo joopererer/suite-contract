@@ -1,0 +1,1 @@
+{"devDependencies": {"json-schema-to-typescript": "^15.0.0"}, "name": "suite-contract", "scripts": {"gen:ts": "json2ts -i schema -o gen/ts/index.d.ts", "validate": "node tools/validate_vectors.mjs"}, "version": "2.0.0-draft"}

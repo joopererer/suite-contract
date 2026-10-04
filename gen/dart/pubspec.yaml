@@ -1,0 +1,4 @@
+name: suite_contract
+version: 2.0.0-draft
+environment:
+  sdk: '>=3.0.0 <4.0.0'
