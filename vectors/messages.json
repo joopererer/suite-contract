@@ -1,1 +1,761 @@
-{"invalid": [{"data": {"clientId": "oap", "clientVersion": "0.8.0", "msgId": "not-a-uuid", "payload": {}, "protocol": 2, "sentAt": 1759600000000, "type": "capture_download"}, "schema": "envelope.json"}, {"data": {"clientId": "oap", "clientVersion": "0.8.0", "msgId": "0192f1c4-1111-4111-8111-111111111111", "payload": {}, "protocol": 1, "sentAt": 1759600000000, "type": "capture_download"}, "schema": "envelope.json"}], "valid": [{"data": {"clientId": "oap", "clientVersion": "0.8.0", "libraryId": "11111111-1111-4111-8111-111111111111", "msgId": "0192f1c4-1111-4111-8111-111111111111", "payload": {"type": "capture_download"}, "privacy": "normal", "protocol": 2, "sentAt": 1759600000000, "type": "capture_download"}, "schema": "envelope.json"}, {"data": {"clientId": "oap", "clientVersion": "0.8.0", "protocols": [2], "type": "hello"}, "schema": "hello.json"}, {"data": {"capabilities": ["inbox.capture_download", "query.taxonomy"], "foRunning": false, "hostVersion": "0.3.0", "libraryId": "11111111-1111-4111-8111-111111111111", "protocol": 2, "type": "hello_ack"}, "schema": "hello_ack.json"}, {"data": {"msgId": "0192f1c4-1111-4111-8111-111111111111", "status": "ok", "type": "ack"}, "schema": "ack.json"}, {"data": {"downloadKey": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "filename": "r.pdf", "type": "capture_download", "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b"}, "schema": "capture_download.json"}, {"data": {"externalId": "e1", "type": "capture_reference", "url": "https://example.com/a"}, "schema": "capture_reference.json"}, {"data": {"action": "tag", "payload": {"tags": ["x"]}, "proposedBy": "oap", "type": "proposal"}, "schema": "proposal.json"}, {"data": {"type": "query.taxonomy"}, "schema": "query.taxonomy.json"}, {"data": {"items": [{"urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b"}], "type": "query.library_lookup"}, "schema": "query.library_lookup.json"}, {"data": {"sessionIds": ["s1"], "type": "query.resource_signals"}, "schema": "query.resource_signals.json"}, {"data": {"downloadKey": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "filename": "r.pdf", "sessionId": "s1", "type": "download_evidence", "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b"}, "schema": "download_evidence.json"}, {"data": {"sessionId": "s1", "type": "session_update"}, "schema": "session_update.json"}, {"data": {"sessionId": "s1", "type": "forget_session"}, "schema": "forget_session.json"}, {"data": {"type": "provenance.requests"}, "schema": "provenance.json"}, {"data": {"generatedAt": 1790000000000, "digest": {}, "interests": [], "pages": [], "projects": [], "trends": [], "type": "interest_snapshot"}, "schema": "interest_snapshot.json"}, {"data": {"clientId": "oap", "libraryId": "11111111-1111-4111-8111-111111111111", "type": "unlink"}, "schema": "unlink.json"}]}
+{
+  "valid": [
+    {
+      "schema": "envelope.json",
+      "data": {
+        "protocol": 2,
+        "msgId": "0192f1c4-1111-4111-8111-111111111111",
+        "clientId": "oap",
+        "clientVersion": "0.8.0",
+        "libraryId": "11111111-1111-4111-8111-111111111111",
+        "type": "capture_download",
+        "privacy": "normal",
+        "sentAt": 1759600000000,
+        "payload": {
+          "type": "capture_download"
+        }
+      }
+    },
+    {
+      "schema": "hello.json",
+      "data": {
+        "type": "hello",
+        "clientId": "oap",
+        "clientVersion": "0.8.0",
+        "protocols": [
+          2
+        ]
+      }
+    },
+    {
+      "schema": "hello_ack.json",
+      "data": {
+        "type": "hello_ack",
+        "protocol": 2,
+        "hostVersion": "0.3.0",
+        "libraryId": "11111111-1111-4111-8111-111111111111",
+        "foRunning": false,
+        "capabilities": [
+          "inbox.download_evidence",
+          "query.taxonomy"
+        ]
+      }
+    },
+    {
+      "schema": "ack.json",
+      "data": {
+        "type": "ack",
+        "msgId": "0192f1c4-1111-4111-8111-111111111111",
+        "status": "ok"
+      }
+    },
+    {
+      "schema": "ack.json",
+      "data": {
+        "type": "ack",
+        "msgId": "0192f1c4-1111-4111-8111-111111111111",
+        "status": "rejected",
+        "code": "SCHEMA_INCOMPATIBLE",
+        "message": "bad payload",
+        "result": {
+          "quickHash": "abc",
+          "size": 10
+        }
+      }
+    },
+    {
+      "schema": "capture_download.json",
+      "data": {
+        "type": "capture_download",
+        "downloadKey": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b",
+        "filename": "r.pdf",
+        "sourceKey": "baidu:u1:f1"
+      }
+    },
+    {
+      "schema": "capture_reference.json",
+      "data": {
+        "type": "capture_reference",
+        "externalId": "e1",
+        "url": "https://example.com/a",
+        "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b",
+        "sourceKey": "web:me:1"
+      }
+    },
+    {
+      "schema": "proposal.json",
+      "data": {
+        "type": "proposal",
+        "action": "tag",
+        "payload": {
+          "tags": [
+            "x"
+          ]
+        },
+        "proposedBy": "oap",
+        "resourceId": "r1"
+      }
+    },
+    {
+      "schema": "query.taxonomy.json",
+      "data": {
+        "type": "query.taxonomy"
+      }
+    },
+    {
+      "schema": "query.taxonomy.json",
+      "data": {
+        "type": "query.taxonomy.response",
+        "version": "7",
+        "full": true,
+        "tree": [
+          {
+            "id": "t1",
+            "name": "Photos",
+            "path": [
+              "Photos"
+            ],
+            "color": "#fff"
+          }
+        ]
+      }
+    },
+    {
+      "schema": "query.library_lookup.json",
+      "data": {
+        "type": "query.library_lookup",
+        "items": [
+          {
+            "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b"
+          }
+        ]
+      }
+    },
+    {
+      "schema": "query.library_lookup.json",
+      "data": {
+        "type": "query.library_lookup.response",
+        "items": [
+          {
+            "queryIndex": 0,
+            "found": true,
+            "resourceId": "r1",
+            "libraryId": "11111111-1111-4111-8111-111111111111"
+          }
+        ]
+      }
+    },
+    {
+      "schema": "query.resource_signals.json",
+      "data": {
+        "type": "query.resource_signals",
+        "sessionIds": [
+          "s1"
+        ]
+      }
+    },
+    {
+      "schema": "query.resource_signals.json",
+      "data": {
+        "type": "query.resource_signals.response",
+        "items": [
+          {
+            "sessionId": "s1",
+            "resourceId": "r1",
+            "favorite": true,
+            "rating": 4
+          }
+        ]
+      }
+    },
+    {
+      "schema": "download_evidence.json",
+      "data": {
+        "type": "download_evidence",
+        "downloadKey": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "sessionId": "s1",
+        "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b",
+        "filename": "r.pdf"
+      }
+    },
+    {
+      "schema": "session_update.json",
+      "data": {
+        "type": "session_update",
+        "sessionId": "s1",
+        "projectId": "p1",
+        "sensitive": "job"
+      }
+    },
+    {
+      "schema": "forget_session.json",
+      "data": {
+        "type": "forget_session",
+        "sessionId": "s1"
+      }
+    },
+    {
+      "schema": "provenance.json",
+      "data": {
+        "type": "provenance.requests"
+      }
+    },
+    {
+      "schema": "provenance.json",
+      "data": {
+        "type": "provenance.requests.response",
+        "items": [
+          {
+            "lookupId": "l1",
+            "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b"
+          }
+        ]
+      }
+    },
+    {
+      "schema": "provenance.json",
+      "data": {
+        "type": "provenance.results",
+        "items": [
+          {
+            "lookupId": "l1",
+            "sessionId": "s1"
+          }
+        ]
+      }
+    },
+    {
+      "schema": "interest_snapshot.json",
+      "data": {
+        "type": "interest_snapshot",
+        "generatedAt": 1790000000000,
+        "interests": [],
+        "projects": [],
+        "trends": [],
+        "digest": {},
+        "pages": []
+      }
+    },
+    {
+      "schema": "unlink.json",
+      "data": {
+        "type": "unlink",
+        "clientId": "oap",
+        "libraryId": "11111111-1111-4111-8111-111111111111",
+        "retainMirror": true
+      }
+    }
+  ],
+  "invalid": [
+    {
+      "schema": "envelope.json",
+      "data": {
+        "protocol": 2,
+        "msgId": "not-a-uuid",
+        "clientId": "oap",
+        "clientVersion": "0.8.0",
+        "type": "x",
+        "sentAt": 1,
+        "payload": {}
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "envelope.json",
+      "data": {
+        "protocol": 1,
+        "msgId": "0192f1c4-1111-4111-8111-111111111111",
+        "clientId": "oap",
+        "clientVersion": "0.8.0",
+        "type": "x",
+        "sentAt": 1,
+        "payload": {}
+      },
+      "expected_error_code": "PROTOCOL_MISMATCH"
+    },
+    {
+      "schema": "hello.json",
+      "data": {
+        "type": "hello",
+        "clientId": "oap",
+        "clientVersion": "0.8.0"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "hello_ack.json",
+      "data": {
+        "type": "hello_ack",
+        "protocol": 2,
+        "hostVersion": "x",
+        "libraryId": "11111111-1111-4111-8111-111111111111",
+        "foRunning": false,
+        "capabilities": [
+          "nope"
+        ]
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "ack.json",
+      "data": {
+        "type": "ack",
+        "msgId": "0192f1c4-1111-4111-8111-111111111111"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "ack.json",
+      "data": {
+        "type": "ack",
+        "msgId": "0192f1c4-1111-4111-8111-111111111111",
+        "status": "maybe"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "ack.json",
+      "data": {
+        "type": "ack",
+        "msgId": "0192f1c4-1111-4111-8111-111111111111",
+        "status": "rejected",
+        "code": "NOPE"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "download_evidence.json",
+      "data": {
+        "type": "download_evidence",
+        "sessionId": "s1",
+        "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b",
+        "filename": "r.pdf"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "download_evidence.json",
+      "data": {
+        "type": "download_evidence",
+        "downloadKey": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "sessionId": "s1",
+        "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b",
+        "filename": "r.pdf",
+        "downloadedAt": "yesterday"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "download_evidence.json",
+      "data": {
+        "type": "download_evidence",
+        "downloadKey": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "sessionId": "s1",
+        "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b",
+        "filename": "r.pdf",
+        "sensitive": "gossip"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "session_update.json",
+      "data": {
+        "type": "session_update"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "session_update.json",
+      "data": {
+        "type": "session_update",
+        "sessionId": 42
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "session_update.json",
+      "data": {
+        "type": "session_update",
+        "sessionId": "s1",
+        "sensitive": "gossip"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "forget_session.json",
+      "data": {
+        "type": "forget_session"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "forget_session.json",
+      "data": {
+        "type": "forget_session",
+        "sessionId": 42
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "forget_session.json",
+      "data": {
+        "type": "forget_session",
+        "sessionId": "s1",
+        "extra": 1
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "proposal.json",
+      "data": {
+        "type": "proposal",
+        "action": "tag",
+        "proposedBy": "oap"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "proposal.json",
+      "data": {
+        "type": "proposal",
+        "action": "tag",
+        "payload": "x",
+        "proposedBy": "oap"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "proposal.json",
+      "data": {
+        "type": "proposal",
+        "action": "delete",
+        "payload": {},
+        "proposedBy": "oap"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "interest_snapshot.json",
+      "data": {
+        "type": "interest_snapshot",
+        "generatedAt": 1790000000000
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "interest_snapshot.json",
+      "data": {
+        "type": "interest_snapshot",
+        "generatedAt": "soon",
+        "interests": [],
+        "projects": [],
+        "trends": [],
+        "digest": {},
+        "pages": []
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "interest_snapshot.json",
+      "data": {
+        "type": "interest_snapshot",
+        "generatedAt": 1790000000000,
+        "interests": [],
+        "projects": [],
+        "trends": [],
+        "digest": {},
+        "pages": [],
+        "mood": "happy"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "provenance.json",
+      "data": {
+        "type": "provenance.requests",
+        "items": "x"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "provenance.json",
+      "data": {
+        "type": "provenance.requests.response",
+        "items": [
+          {
+            "lookupId": "l1"
+          }
+        ]
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "provenance.json",
+      "data": {
+        "type": "provenance.requests.response",
+        "items": [
+          {
+            "lookupId": "l1",
+            "urlHash": "zzz"
+          }
+        ]
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "provenance.json",
+      "data": {
+        "type": "provenance.results"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "provenance.json",
+      "data": {
+        "type": "provenance.results",
+        "items": "x"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "provenance.json",
+      "data": {
+        "type": "provenance.results",
+        "items": [],
+        "bogus": 1
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "capture_download.json",
+      "data": {
+        "type": "capture_download",
+        "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b",
+        "filename": "r.pdf"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "capture_download.json",
+      "data": {
+        "type": "capture_download",
+        "downloadKey": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b",
+        "filename": "r.pdf",
+        "downloadedAt": "now"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "capture_download.json",
+      "data": {
+        "type": "capture_download",
+        "downloadKey": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b",
+        "filename": "r.pdf",
+        "sensitive": "gossip"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "capture_download.json",
+      "data": {
+        "type": "capture_download",
+        "downloadKey": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b",
+        "filename": "r.pdf",
+        "sourceKey": "flat"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "capture_reference.json",
+      "data": {
+        "type": "capture_reference",
+        "url": "https://example.com/a"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "capture_reference.json",
+      "data": {
+        "type": "capture_reference",
+        "externalId": "e1",
+        "url": "https://example.com/a",
+        "tags": "x"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "capture_reference.json",
+      "data": {
+        "type": "capture_reference",
+        "externalId": "e1",
+        "url": "https://example.com/a",
+        "sourceKey": "a:b"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "unlink.json",
+      "data": {
+        "type": "unlink",
+        "clientId": "oap"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "unlink.json",
+      "data": {
+        "type": "unlink",
+        "clientId": "oap",
+        "libraryId": "11111111-1111-4111-8111-111111111111",
+        "retainMirror": "yes"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "unlink.json",
+      "data": {
+        "type": "unlink",
+        "clientId": "chrome",
+        "libraryId": "11111111-1111-4111-8111-111111111111"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "query.taxonomy.json",
+      "data": {
+        "sinceVersion": "3"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "query.taxonomy.json",
+      "data": {
+        "type": "query.taxonomy",
+        "sinceVersion": 7
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "query.taxonomy.json",
+      "data": {
+        "type": "query.taxonomy",
+        "sinceVersion": "3",
+        "unknownCap": true
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "query.taxonomy.json",
+      "data": {
+        "type": "query.taxonomy.response",
+        "version": "7",
+        "full": true
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "query.taxonomy.json",
+      "data": {
+        "type": "query.taxonomy.response",
+        "version": "7",
+        "full": "yes",
+        "tree": []
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "query.library_lookup.json",
+      "data": {
+        "type": "query.library_lookup"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "query.library_lookup.json",
+      "data": {
+        "type": "query.library_lookup",
+        "items": "x"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "query.library_lookup.json",
+      "data": {
+        "type": "query.library_lookup",
+        "items": [
+          {}
+        ]
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "query.library_lookup.json",
+      "data": {
+        "type": "query.library_lookup.response"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "query.library_lookup.json",
+      "data": {
+        "type": "query.library_lookup.response",
+        "items": [
+          {
+            "queryIndex": "zero",
+            "found": true
+          }
+        ]
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "query.resource_signals.json",
+      "data": {
+        "type": "query.resource_signals"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "query.resource_signals.json",
+      "data": {
+        "type": "query.resource_signals",
+        "sessionIds": "s1"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "query.resource_signals.json",
+      "data": {
+        "type": "query.resource_signals",
+        "sessionIds": [
+          "s1"
+        ],
+        "extra": 1
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "query.resource_signals.json",
+      "data": {
+        "type": "query.resource_signals.response"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "query.resource_signals.json",
+      "data": {
+        "type": "query.resource_signals.response",
+        "items": [
+          {
+            "sessionId": "s1"
+          }
+        ]
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    }
+  ]
+}
