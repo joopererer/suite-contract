@@ -1,0 +1,7 @@
+# Dart library package (referenced by other projects via git path dep): never commit lockfile
+gen/dart/.dart_tool/
+gen/dart/pubspec.lock
+# TS package build outputs
+gen/ts/node_modules/
+gen/ts/dist/
+gen/ts/build/
