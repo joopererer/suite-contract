@@ -5,3 +5,4 @@ gen/dart/pubspec.lock
 gen/ts/node_modules/
 gen/ts/dist/
 gen/ts/build/
+gen/ts/.browser-check/

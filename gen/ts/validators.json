@@ -1,0 +1,809 @@
+{
+  "ack.json": {
+    "$id": "https://suite-contract.local/schema/ack.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "code": {
+        "enum": [
+          "BAD_MESSAGE",
+          "FILE_NOT_FOUND",
+          "INTERNAL",
+          "PROTOCOL_MISMATCH",
+          "SCHEMA_INCOMPATIBLE"
+        ]
+      },
+      "message": {
+        "type": "string"
+      },
+      "msgId": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "result": {
+        "type": "object"
+      },
+      "status": {
+        "enum": [
+          "ok",
+          "rejected"
+        ]
+      },
+      "type": {
+        "const": "ack"
+      }
+    },
+    "required": [
+      "type",
+      "msgId",
+      "status"
+    ],
+    "type": "object"
+  },
+  "capture_download.json": {
+    "$id": "https://suite-contract.local/schema/capture_download.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "downloadKey": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "downloadedAt": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "entities": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "filename": {
+        "type": "string"
+      },
+      "foTagIds": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "localTags": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "scrapedFields": {
+        "type": "object"
+      },
+      "sensitive": {
+        "enum": [
+          "finance",
+          "health",
+          "job",
+          "personal"
+        ]
+      },
+      "sourceKey": {
+        "pattern": "^[^:]+:[^:]+:[^:]+$",
+        "type": "string"
+      },
+      "sourceTitle": {
+        "type": "string"
+      },
+      "sourceUrl": {
+        "type": "string"
+      },
+      "type": {
+        "const": "capture_download"
+      },
+      "urlHash": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      }
+    },
+    "required": [
+      "type",
+      "downloadKey",
+      "urlHash",
+      "filename"
+    ],
+    "type": "object"
+  },
+  "capture_reference.json": {
+    "$id": "https://suite-contract.local/schema/capture_reference.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "externalId": {
+        "type": "string"
+      },
+      "note": {
+        "type": "string"
+      },
+      "tags": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "title": {
+        "type": "string"
+      },
+      "sourceKey": {
+        "pattern": "^[^:]+:[^:]+:[^:]+$",
+        "type": "string"
+      },
+      "type": {
+        "const": "capture_reference"
+      },
+      "url": {
+        "type": "string"
+      },
+      "urlHash": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      }
+    },
+    "required": [
+      "type",
+      "externalId",
+      "url"
+    ],
+    "type": "object"
+  },
+  "download_evidence.json": {
+    "$id": "https://suite-contract.local/schema/download_evidence.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "downloadKey": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "downloadedAt": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "filename": {
+        "type": "string"
+      },
+      "pageTitle": {
+        "type": "string"
+      },
+      "path": {
+        "type": "string"
+      },
+      "projectId": {
+        "type": "string"
+      },
+      "referrerHash": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "sensitive": {
+        "enum": [
+          "finance",
+          "health",
+          "job",
+          "personal"
+        ]
+      },
+      "sessionId": {
+        "type": "string"
+      },
+      "type": {
+        "const": "download_evidence"
+      },
+      "urlHash": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "visitId": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "type",
+      "downloadKey",
+      "sessionId",
+      "urlHash",
+      "filename"
+    ],
+    "type": "object"
+  },
+  "envelope.json": {
+    "$id": "https://suite-contract.local/schema/envelope.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "clientId": {
+        "enum": [
+          "marginalia",
+          "oap"
+        ]
+      },
+      "clientVersion": {
+        "type": "string"
+      },
+      "libraryId": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "msgId": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "payload": {
+        "type": "object"
+      },
+      "privacy": {
+        "default": "normal",
+        "enum": [
+          "normal",
+          "private",
+          "sensitive"
+        ]
+      },
+      "protocol": {
+        "const": 2,
+        "type": "integer"
+      },
+      "sentAt": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "protocol",
+      "msgId",
+      "clientId",
+      "clientVersion",
+      "type",
+      "sentAt",
+      "payload"
+    ],
+    "type": "object"
+  },
+  "forget_session.json": {
+    "$id": "https://suite-contract.local/schema/forget_session.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "sessionId": {
+        "type": "string"
+      },
+      "type": {
+        "const": "forget_session"
+      }
+    },
+    "required": [
+      "type",
+      "sessionId"
+    ],
+    "type": "object"
+  },
+  "hello.json": {
+    "$id": "https://suite-contract.local/schema/hello.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "clientId": {
+        "enum": [
+          "marginalia",
+          "oap"
+        ]
+      },
+      "clientVersion": {
+        "type": "string"
+      },
+      "protocols": {
+        "contains": {
+          "const": 2
+        },
+        "items": {
+          "type": "integer"
+        },
+        "minItems": 1
+      },
+      "type": {
+        "const": "hello"
+      }
+    },
+    "required": [
+      "type",
+      "clientId",
+      "clientVersion",
+      "protocols"
+    ],
+    "type": "object"
+  },
+  "hello_ack.json": {
+    "$id": "https://suite-contract.local/schema/hello_ack.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "capabilities": {
+        "items": {
+          "enum": [
+            "inbox.capture_download",
+            "inbox.capture_reference",
+            "inbox.download_evidence",
+            "inbox.forget_session",
+            "inbox.interest_snapshot",
+            "inbox.proposal",
+            "inbox.session_update",
+            "provenance.requests",
+            "provenance.results",
+            "query.library_lookup",
+            "query.resource_signals",
+            "query.taxonomy"
+          ]
+        },
+        "type": "array"
+      },
+      "foRunning": {
+        "type": "boolean"
+      },
+      "hostVersion": {
+        "type": "string"
+      },
+      "libraryId": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "protocol": {
+        "const": 2
+      },
+      "type": {
+        "const": "hello_ack"
+      }
+    },
+    "required": [
+      "type",
+      "protocol",
+      "hostVersion",
+      "libraryId",
+      "foRunning",
+      "capabilities"
+    ],
+    "type": "object"
+  },
+  "interest_snapshot.json": {
+    "$id": "https://suite-contract.local/schema/interest_snapshot.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "digest": {
+        "type": "object"
+      },
+      "generatedAt": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "interests": {
+        "type": "array"
+      },
+      "pages": {
+        "type": "array"
+      },
+      "projects": {
+        "type": "array"
+      },
+      "trends": {
+        "type": "array"
+      },
+      "type": {
+        "const": "interest_snapshot"
+      }
+    },
+    "required": [
+      "type",
+      "generatedAt",
+      "interests",
+      "projects",
+      "trends",
+      "digest",
+      "pages"
+    ],
+    "type": "object"
+  },
+  "proposal.json": {
+    "$id": "https://suite-contract.local/schema/proposal.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "action": {
+        "enum": [
+          "create_tag",
+          "move",
+          "rename",
+          "set_field",
+          "tag"
+        ]
+      },
+      "externalId": {
+        "type": "string"
+      },
+      "payload": {
+        "type": "object"
+      },
+      "proposedBy": {
+        "enum": [
+          "marginalia",
+          "oap"
+        ]
+      },
+      "resourceId": {
+        "type": "string"
+      },
+      "type": {
+        "const": "proposal"
+      }
+    },
+    "required": [
+      "type",
+      "action",
+      "payload",
+      "proposedBy"
+    ],
+    "type": "object"
+  },
+  "provenance.json": {
+    "$id": "https://suite-contract.local/schema/provenance.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "oneOf": [
+      {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "const": "provenance.requests"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "type": "object"
+      },
+      {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "lookupId": {
+                  "type": "string"
+                },
+                "urlHash": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "lookupId",
+                "urlHash"
+              ],
+              "type": "object"
+            }
+          },
+          "type": {
+            "const": "provenance.requests.response"
+          }
+        },
+        "required": [
+          "type",
+          "items"
+        ],
+        "type": "object"
+      },
+      {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "type": {
+            "const": "provenance.results"
+          }
+        },
+        "required": [
+          "type",
+          "items"
+        ],
+        "type": "object"
+      }
+    ]
+  },
+  "query.library_lookup.json": {
+    "$id": "https://suite-contract.local/schema/query.library_lookup.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "oneOf": [
+      {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "required": [
+                    "md5"
+                  ]
+                },
+                {
+                  "required": [
+                    "sha256"
+                  ]
+                },
+                {
+                  "required": [
+                    "sourceKey"
+                  ]
+                },
+                {
+                  "required": [
+                    "urlHash"
+                  ]
+                }
+              ],
+              "type": "object"
+            },
+            "maxItems": 100,
+            "minItems": 1
+          },
+          "type": {
+            "const": "query.library_lookup"
+          }
+        },
+        "required": [
+          "type",
+          "items"
+        ],
+        "type": "object"
+      },
+      {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "found": {
+                  "type": "boolean"
+                },
+                "libraryId": {
+                  "type": "string"
+                },
+                "queryIndex": {
+                  "type": "integer"
+                },
+                "resourceId": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "queryIndex",
+                "found"
+              ],
+              "type": "object"
+            }
+          },
+          "type": {
+            "const": "query.library_lookup.response"
+          }
+        },
+        "required": [
+          "type",
+          "items"
+        ],
+        "type": "object"
+      }
+    ]
+  },
+  "query.resource_signals.json": {
+    "$id": "https://suite-contract.local/schema/query.resource_signals.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "oneOf": [
+      {
+        "additionalProperties": false,
+        "properties": {
+          "sessionIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "type": {
+            "const": "query.resource_signals"
+          }
+        },
+        "required": [
+          "type",
+          "sessionIds"
+        ],
+        "type": "object"
+      },
+      {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "favorite": {
+                  "type": "boolean"
+                },
+                "rating": {
+                  "type": "integer"
+                },
+                "resourceId": {
+                  "type": "string"
+                },
+                "sessionId": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sessionId",
+                "resourceId"
+              ],
+              "type": "object"
+            }
+          },
+          "type": {
+            "const": "query.resource_signals.response"
+          }
+        },
+        "required": [
+          "type",
+          "items"
+        ],
+        "type": "object"
+      }
+    ]
+  },
+  "query.taxonomy.json": {
+    "$id": "https://suite-contract.local/schema/query.taxonomy.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "oneOf": [
+      {
+        "additionalProperties": false,
+        "properties": {
+          "sinceVersion": {
+            "type": "string"
+          },
+          "type": {
+            "const": "query.taxonomy"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "type": "object"
+      },
+      {
+        "additionalProperties": false,
+        "properties": {
+          "full": {
+            "type": "boolean"
+          },
+          "tree": {
+            "type": "array",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "parentId": {
+                  "type": "string"
+                },
+                "path": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "path"
+              ],
+              "type": "object"
+            }
+          },
+          "type": {
+            "const": "query.taxonomy.response"
+          },
+          "version": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "version",
+          "full",
+          "tree"
+        ],
+        "type": "object"
+      }
+    ]
+  },
+  "session_update.json": {
+    "$id": "https://suite-contract.local/schema/session_update.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "projectId": {
+        "type": "string"
+      },
+      "sensitive": {
+        "enum": [
+          "finance",
+          "health",
+          "job",
+          "personal"
+        ]
+      },
+      "sessionId": {
+        "type": "string"
+      },
+      "type": {
+        "const": "session_update"
+      }
+    },
+    "required": [
+      "type",
+      "sessionId"
+    ],
+    "type": "object"
+  },
+  "unlink.json": {
+    "$id": "https://suite-contract.local/schema/unlink.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "clientId": {
+        "enum": [
+          "marginalia",
+          "oap"
+        ]
+      },
+      "libraryId": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "retainMirror": {
+        "default": true,
+        "type": "boolean"
+      },
+      "type": {
+        "const": "unlink"
+      }
+    },
+    "required": [
+      "type",
+      "clientId",
+      "libraryId"
+    ],
+    "type": "object"
+  }
+}

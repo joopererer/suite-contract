@@ -1,1 +1,1 @@
-{"main": "index.js", "name": "@suite/suite-contract-ts", "types": "index.d.ts", "version": "2.0.0-draft"}
+{"exports": {".": {"import": "./index.js", "types": "./index.d.ts"}}, "main": "index.js", "name": "@suite/suite-contract-ts", "type": "module", "types": "index.d.ts", "version": "2.0.0-draft"}

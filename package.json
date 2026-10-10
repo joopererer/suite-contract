@@ -1,1 +1,20 @@
-{"devDependencies":{"json-schema-to-typescript":"^15.0.4"},"name":"suite-contract","scripts":{"gen:ts":"json2ts -i schema -o gen/ts/index.d.ts","validate":"node tools/validate_vectors.mjs"},"version":"2.0.0-draft","dependencies":{"ajv":"^8.20.0","ajv-formats":"^3.0.1"}}
+{
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "json-schema-to-typescript": "^15.0.4"
+  },
+  "name": "suite-contract",
+  "scripts": {
+    "gen:ts": "json2ts -i schema -o gen/ts/index.d.ts",
+    "validate": "node tools/validate_vectors.mjs",
+    "gen:validators": "node tools/gen_validators.mjs",
+    "test:browser-vectors": "node tools/test_browser_vectors.mjs",
+    "check:browser-build": "node tools/check_browser_build.mjs",
+    "precommit": "npm run validate && npm run test:browser-vectors && node tools/check_browser_build.mjs && node tools/test_algorithms.mjs"
+  },
+  "version": "2.0.0-draft",
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1"
+  }
+}
