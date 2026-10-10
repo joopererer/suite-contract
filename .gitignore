@@ -1,3 +1,5 @@
+# Dependencies: install via package.json + package-lock.json, never commit
+node_modules/
 # Dart library package (referenced by other projects via git path dep): never commit lockfile
 gen/dart/.dart_tool/
 gen/dart/pubspec.lock

@@ -1,4 +1,6 @@
-import { normalizeUrl, urlHash, downloadKey, sourceKey, validateMessage } from '../gen/ts/algorithms.mjs';
+// Cross-check only: node:crypto reference implementation. NOT part of the
+// published gen/ts package (browser-incompatible). Compares against index.js.
+import { normalizeUrl, urlHash, downloadKey, sourceKey, validateMessage } from './reference_algorithms_node.mjs';
 import fs from 'node:fs';
 const urlCases = JSON.parse(fs.readFileSync(new URL('../vectors/url-normalization.json', import.meta.url)));
 const dkCases = JSON.parse(fs.readFileSync(new URL('../vectors/downloadKey.json', import.meta.url)));
