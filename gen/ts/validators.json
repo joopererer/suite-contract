@@ -69,10 +69,15 @@
         "type": "array"
       },
       "localTags": {
+        "type": "array",
         "items": {
-          "type": "string"
-        },
-        "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
       },
       "scrapedFields": {
         "type": "object"
@@ -100,7 +105,8 @@
       },
       "urlHash": {
         "pattern": "^[0-9a-f]{64}$",
-        "type": "string"
+        "type": "string",
+        "description": "Hash of the browser DownloadItem.finalUrl, which may be a blob: URL. Receivers MUST NOT use it for provenance indexing; use sourceUrl and sourceKey instead."
       }
     },
     "required": [
@@ -123,10 +129,15 @@
         "type": "string"
       },
       "tags": {
+        "type": "array",
         "items": {
-          "type": "string"
-        },
-        "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
       },
       "title": {
         "type": "string"
@@ -430,7 +441,27 @@
         "type": "string"
       },
       "payload": {
-        "type": "object"
+        "type": "object",
+        "properties": {
+          "foTagIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1
+            }
+          }
+        },
+        "additionalProperties": true
       },
       "proposedBy": {
         "enum": [

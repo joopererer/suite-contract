@@ -39,6 +39,8 @@ function checkSchema(v, sch, defs, errors, path) {
     })) { fail(`expected ${types.join('|')}`); return false; }
   }
   if (typeof v === 'string') {
+    if (sch.minLength !== undefined && v.length < sch.minLength) fail(`minLength ${sch.minLength}`);
+    if (sch.maxLength !== undefined && v.length > sch.maxLength) fail(`maxLength ${sch.maxLength}`);
     if (sch.pattern !== undefined && !(new RegExp(sch.pattern).test(v))) fail(`must match ${sch.pattern}`);
     if (sch.format === 'uuid' && !UUID_RE.test(v)) fail('must be uuid');
   }

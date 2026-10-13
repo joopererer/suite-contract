@@ -70,7 +70,16 @@
         "downloadKey": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b",
         "filename": "r.pdf",
-        "sourceKey": "baidu:u1:f1"
+        "sourceKey": "baidu:u1:f1",
+        "localTags": [
+          [
+            "通用标签",
+            "JAV"
+          ],
+          [
+            "风景"
+          ]
+        ]
       }
     },
     {
@@ -80,7 +89,13 @@
         "externalId": "e1",
         "url": "https://example.com/a",
         "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b",
-        "sourceKey": "web:me:1"
+        "sourceKey": "web:me:1",
+        "tags": [
+          [
+            "通用标签",
+            "JAV"
+          ]
+        ]
       }
     },
     {
@@ -89,8 +104,14 @@
         "type": "proposal",
         "action": "tag",
         "payload": {
+          "foTagIds": [
+            "t1"
+          ],
           "tags": [
-            "x"
+            [
+              "通用标签",
+              "JAV"
+            ]
           ]
         },
         "proposedBy": "oap",
@@ -754,6 +775,145 @@
             "sessionId": "s1"
           }
         ]
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "capture_download.json",
+      "data": {
+        "type": "capture_download",
+        "downloadKey": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b",
+        "filename": "r.pdf",
+        "localTags": "wind"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "capture_download.json",
+      "data": {
+        "type": "capture_download",
+        "downloadKey": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b",
+        "filename": "r.pdf",
+        "localTags": [
+          []
+        ]
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "capture_download.json",
+      "data": {
+        "type": "capture_download",
+        "downloadKey": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b",
+        "filename": "r.pdf",
+        "localTags": [
+          [
+            "ok",
+            ""
+          ]
+        ]
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "capture_download.json",
+      "data": {
+        "type": "capture_download",
+        "downloadKey": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "urlHash": "86e03b43e7a6f0905543afcc945061cb419d7b4b20806492a510168a2c0e974b",
+        "filename": "r.pdf",
+        "localTags": [
+          "wind",
+          "photo"
+        ]
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "capture_reference.json",
+      "data": {
+        "type": "capture_reference",
+        "externalId": "e1",
+        "url": "https://example.com/a",
+        "tags": [
+          []
+        ]
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "capture_reference.json",
+      "data": {
+        "type": "capture_reference",
+        "externalId": "e1",
+        "url": "https://example.com/a",
+        "tags": [
+          [
+            ""
+          ]
+        ]
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "capture_reference.json",
+      "data": {
+        "type": "capture_reference",
+        "externalId": "e1",
+        "url": "https://example.com/a",
+        "tags": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "proposal.json",
+      "data": {
+        "type": "proposal",
+        "action": "tag",
+        "payload": {
+          "tags": [
+            []
+          ]
+        },
+        "proposedBy": "oap"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "proposal.json",
+      "data": {
+        "type": "proposal",
+        "action": "tag",
+        "payload": {
+          "tags": [
+            [
+              "a",
+              ""
+            ]
+          ]
+        },
+        "proposedBy": "oap"
+      },
+      "expected_error_code": "SCHEMA_INCOMPATIBLE"
+    },
+    {
+      "schema": "proposal.json",
+      "data": {
+        "type": "proposal",
+        "action": "tag",
+        "payload": {
+          "tags": [
+            "a",
+            "b"
+          ]
+        },
+        "proposedBy": "oap"
       },
       "expected_error_code": "SCHEMA_INCOMPATIBLE"
     }
