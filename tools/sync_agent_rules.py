@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sync suite rules, the interop design doc and decision records from suite-contract into project repos.
+"""Sync suite rules, the interop design doc, decision records and glossary from suite-contract into project repos.
 
 Usage:
     python tools/sync_agent_rules.py <path-to-project-repo> [<more repos>...]
@@ -10,6 +10,7 @@ For each repo:
      in <repo>/AGENTS.md with agents/SUITE_RULES.md (appends the block if markers are missing).
   2. Copies docs/SUITE_INTEROP.md      -> <repo>/docs/suite/SUITE_INTEROP.md
   3. Copies docs/OPEN_QUESTIONS.md     -> <repo>/docs/suite/OPEN_QUESTIONS.md   (if present)
+  3b. Copies docs/GLOSSARY.md          -> <repo>/docs/suite/GLOSSARY.md        (if present)
   4. Mirrors docs/decisions/*.md       -> <repo>/docs/suite/decisions/
      Files in the target decisions folder that no longer exist in the source are removed,
      but only if they carry the read-only header written by this script.
@@ -25,6 +26,7 @@ ROOT = Path(__file__).resolve().parent.parent
 RULES_SRC = ROOT / "agents" / "SUITE_RULES.md"
 INTEROP_SRC = ROOT / "docs" / "SUITE_INTEROP.md"
 OPEN_Q_SRC = ROOT / "docs" / "OPEN_QUESTIONS.md"
+GLOSSARY_SRC = ROOT / "docs" / "GLOSSARY.md"
 DECISIONS_SRC = ROOT / "docs" / "decisions"
 VERSION_FILE = ROOT / "VERSION"
 
@@ -128,6 +130,8 @@ def main(argv: list[str]) -> int:
         copy_doc(INTEROP_SRC, repo / "docs" / "suite" / "SUITE_INTEROP.md", version)
         if OPEN_Q_SRC.exists():
             copy_doc(OPEN_Q_SRC, repo / "docs" / "suite" / "OPEN_QUESTIONS.md", version)
+        if GLOSSARY_SRC.exists():
+            copy_doc(GLOSSARY_SRC, repo / "docs" / "suite" / "GLOSSARY.md", version)
         sync_decisions(repo, version)
     return 0
 
