@@ -58,7 +58,35 @@
 
 ## 二、File Organizer 核心术语
 
-> 稍后由 File Organizer 补充（"资料库" Library 等本地文件库术语）。
+> FO 界面与文档用词正本；与 OAP 重叠的 8 条（资料库、资源库、收藏、喜欢、保存到本地资料库、收集箱、相册与集合、接收目录）以既定决定为准，不另立歧义。
+
+| 中文 | 英文 | 说明（使用场景） | 适用产品 |
+|---|---|---|---|
+| 资料库 | Library | FO 本地文件库专称；与 OAP 的"资源库"（Gallery）区分 | FO |
+| 资源库 | Gallery | OAP 自己的资源库（OAP 界面词，此处备查） | OAP |
+| 接收目录 | Capture folder | OAP 下载落点（已冻结，原名下载收件箱） | FO、OAP |
+| 喜欢 / 我的收藏 | Favorite | 喜欢标记；侧栏入口"我的收藏"（已冻结） | FO、OAP |
+| 收藏 | Collect | OAP 动作：将网盘或网页图片采入插件（OAP 界面词，此处备查） | OAP |
+| 保存到本地资料库 | Save to local library | OAP 按钮：将采集内容存入 FO 资料库（OAP 界面词，此处备查） | OAP |
+| 收集箱 | Inbox | OAP 的收集箱（OAP 界面词，此处备查） | OAP |
+| 集合 | Collection | 相册、集合（OAP 界面词，对外统一用 Collection） | OAP |
+| 超级标签 | Supertag | 带字段模板的标签类型（不译，保持产品词） | FO、OAP |
+| 语义搜索 | Semantic Search | 基于向量嵌入的搜索 | FO |
+| 懂你页 | For You | 个性化推荐页（不译为 You Know Page） | FO |
+| 套件 | Suite | 插件套件总称（OAP / MG 等） | FO、OAP、MG |
+| 提案 | Proposal | 待审事项（改名 / 移动 / 打标，需确认） | FO、OAP |
+| 来源 | Source | 文件出处（URL / 云盘条目），溯源用（三端一致，见第三节） | FO、OAP、MG |
+| 溯源 | Provenance | 下载会话与来源的关联记录 | FO、MG |
+| 去重 | Deduplicate | 按内容哈希合并重复文件 | FO |
+| 实体 | Entity | 人物 / 地点等命名实体 | FO |
+| 备注 | Note | 资源备注正文（用户数据，不译内容本身） | FO |
+| 侧栏 | Sidebar | 左侧导航栏 | FO |
+| 检查器 | Inspector | 右侧详情面板 | FO |
+| 浏览器 | Browser | 中央文件浏览视图 | FO |
+| 采集字段 | Scraped fields | OAP 抓取的页面元数据 | OAP、FO |
+| 角标 | Badge | 资源卡片上的 FO 已收录标记 | OAP |
+| 对账 | Reconcile | OAP 本地与 FO 库的 lookup 比对 | OAP、FO |
+| 跟随系统 | Follow system | 语言选项 | FO |
 
 ## 三、套件术语（三端必须逐字一致）
 
